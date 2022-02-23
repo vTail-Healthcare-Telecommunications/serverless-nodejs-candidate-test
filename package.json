@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@types/node": "^17.0.21",
+    "aws-sdk": "^2.1080.0",
+    "generate-password": "^1.7.0",
+    "serverless": "2.72.3",
+    "serverless-webpack": "^5.6.1",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.5",
+    "webpack": "^5.69.1"
+  }
+}

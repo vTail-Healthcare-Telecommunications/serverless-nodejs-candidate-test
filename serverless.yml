@@ -1,0 +1,38 @@
+service: vtail-backend-${opt:stackName}
+
+package:
+  exclude:
+    - .git/**
+    - .gitignore
+plugins:
+  - serverless-webpack
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+  logRetentionInDays: 30
+  platform: ${opt:platform, 'dev'}
+  usagePlan:
+    quota:
+      limit: 5000
+      offset: 2
+      period: MONTH
+    throttle:
+      burstLimit: 200
+      rateLimit: 100
+
+  environment:
+    TABLE_NAME: "vtail-ddb-table"
+    USER_POOL_ID: "vtail-cognito-userpool"
+
+functions:
+  test:
+    handler: src/putEmployee.main
+
+custom:
+  webpack:
+    webpackConfig: "webpack.config.js"
+    includeModules: false
+    packager: "yarn"
